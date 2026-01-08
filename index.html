@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammad Ayaan Khan | AI Researcher</title>
+    <style>
+        /* IMPORT FONTS */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap');
+
+        :root {
+            --bg-color: #0a0a0a;
+            --card-bg: #1a1a1a;
+            --text-main: #e0e0e0;
+            --text-dim: #888888;
+            --accent: #D71921; /* Nothing OS Red */
+            --grid-line: #333333;
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'Share Tech Mono', monospace;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            cursor: crosshair; /* Industrial feel */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* NEURAL NETWORK CANVAS */
+        #canvas-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+        }
+
+        /* LAYOUT UTILITIES */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 80px 0;
+            border-bottom: 1px dashed var(--grid-line);
+        }
+
+        /* TYPOGRAPHY */
+        h1, h2, h3, .mono {
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            display: inline-block;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 5px;
+        }
+
+        .highlight {
+            color: var(--accent);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        /* BUTTONS (NOTHING OS STYLE) */
+        .btn-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background: transparent;
+            border: 1px solid var(--text-main);
+            color: var(--text-main);
+            font-family: var(--font-mono);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px; /* Rounded corners like Nothing widgets */
+        }
+
+        .btn:hover {
+            background: var(--text-main);
+            color: var(--bg-color);
+        }
+
+        .btn-accent {
+            background: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .btn-accent:hover {
+            background: white;
+            color: var(--accent);
+            border-color: white;
+        }
+
+        /* BENTO GRID LAYOUT FOR EXPERIENCE */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(26, 26, 26, 0.6);
+            border: 1px solid var(--grid-line);
+            padding: 25px;
+            border-radius: 20px;
+            backdrop-filter: blur(5px);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--text-dim);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .date {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 2px 8px;
+            border-radius: 10px;
+        }
+
+        .company {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+
+        .role {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        ul.achievements {
+            list-style-type: none;
+        }
+
+        ul.achievements li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        ul.achievements li::before {
+            content: "•";
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+        }
+
+        /* SKILLS TAGS */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: #222;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            border: 1px solid transparent;
+        }
+
+        .skill-tag:hover {
+            border-color: var(--accent);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 50px 0;
+            text-align: center;
+            border-top: 1px solid var(--grid-line);
+        }
+
+        .contact-info {
+            margin-bottom: 20px;
+            color: var(--text-dim);
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .btn-group { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas-container"></canvas>
+
+    <div class="container">
+        
+        <section class="hero">
+            <span class="mono highlight">System.Online...</span>
+            <h1>Mohammad <br> Ayaan Khan</h1>
+            <p>
+                MS CS Student at USC | AI & Machine Learning Researcher.<br>
+                Specializing in Computer Vision, Neural Networks, and Automotive AI.
+            </p>
+            <div class="btn-group">
+                <a href="resume.pdf" class="btn btn-accent" download>Download Resume_</a>
+                <a href="https://www.linkedin.com/in/mkhan736/" target="_blank" class="btn">LinkedIn Profile_</a>
+                <a href="mailto:mkhan736@usc.edu" class="btn">Contact Me_</a>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2> Education_</h2>
+            <div class="bento-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="company">University of Southern California</span>
+                        <span class="date">Aug 2025 - Present</span>
+                    </div>
+                    <span class="role">Master of Science, Computer Science</span>
+                    <p style="font-size: 0.9rem; color: #888;">Los Angeles, CA</p>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="company">Manipal University Jaipur</span>
+                        <span class="date">2020 - 2024</span>
+                    </div>
+                    <span class="role">B.Tech Electronics & Communication</span>
+                    <ul class="achievements">
+                        <li>CGPA: 3.54/4.0</li>
+                        <li>Dean's List Recognition (x2)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience">
+            <h2>Experience_</h2>
+            <div class="bento-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="company">Bharat Electronics Limited</span>
+                        <span class="date">Mar 2024 - Jul 2024</span>
+                    </div>
+                    <span class="role">Research Trainee (AI Dept)</span>
+                    <ul class="achievements">
+                        <li>Developed a 90% accurate AI model to classify vessel-types by trajectory.</li>
+                        <li>Built scalable MongoDB infrastructure, achieving 20% faster queries.</li>
+                        <li>Automated data ingestion, cutting manual handling by 40%.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="company">IIIT</span>
+                        <span class="date">Jun 2023 - Jan 2024</span>
+                    </div>
+                    <span class="role">Research Intern (CS Dept)</span>
+                    <ul class="achievements">
+                        <li>Improved sentiment analysis achieving 87% accuracy (18% gain).</li>
+                        <li>Built 81% accurate OCR model for scanned archives.</li>
+                        <li>Engineered robust data pipelines reducing data-prep time by 50%.</li>
+                    </ul>
+                </div>
+
+                 <div class="card">
+                    <div class="card-header">
+                        <span class="company">SmartInternz</span>
+                        <span class="date">May 2023 - Jul 2023</span>
+                    </div>
+                    <span class="role">Salesforce Developer</span>
+                    <ul class="achievements">
+                        <li>Developed custom features using Apex and Lightning components.</li>
+                        <li>Optimized SOQL queries for faster data retrieval.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>Academic Projects_</h2>
+            <div class="bento-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <span class="company">Tire Wear Prediction</span>
+                        <span class="mono" style="color:var(--accent)">[F1/Telemetry]</span>
+                    </div>
+                    <ul class="achievements">
+                        <li>Hybrid XGBoost-LSTM model with 88% prediction accuracy.</li>
+                        <li>Developed tire-degradation pipeline with 32% signal improvement.</li>
+                        <li>Generates real-time alerts up to 12 laps in advance.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="company">Driver Behavior Analysis</span>
+                        <span class="mono" style="color:var(--accent)">[IoT/ML]</span>
+                    </div>
+                    <ul class="achievements">
+                        <li>92% accuracy in detecting risky driving (harsh braking, aggressive turns).</li>
+                        <li>Processed gyroscope/accelerometer samples from smartphone sensors.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="company">Skin Disease Classification</span>
+                        <span class="mono" style="color:var(--accent)">[Computer Vision]</span>
+                    </div>
+                    <ul class="achievements">
+                        <li>91% accuracy with novel Fuzzy-CNN meta-learner.</li>
+                        <li>Improved ROI clarity by 35% using K-means segmentation.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2>Technical Arsenal_</h2>
+            <div class="skills-container">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">C++</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">TensorFlow</span>
+                <span class="skill-tag">PyTorch</span>
+                <span class="skill-tag">Keras</span>
+                <span class="skill-tag">Scikit-learn</span>
+                <span class="skill-tag">Pandas</span>
+                <span class="skill-tag">MongoDB</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">AWS</span>
+                <span class="skill-tag">Google Cloud</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Git</span>
+            </div>
+        </section>
+
+        <footer>
+            <div class="contact-info">
+                mkhan736@usc.edu | 213-870-9203 | Los Angeles, CA
+            </div>
+            <p class="mono" style="font-size: 0.8rem; opacity: 0.5;">
+                DESIGN INSPIRED BY NOTHING® OS <br>
+                POWERED BY NEURAL NETWORKS
+            </p>
+        </footer>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas-container');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height;
+        let particles = [];
+        
+        // Configuration
+        const particleCount = 60; // Number of nodes
+        const connectionDistance = 150; // Distance to draw lines
+        const mouseDistance = 200; // Interaction radius
+
+        let mouse = { x: null, y: null };
+
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        window.addEventListener('resize', init);
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.vx = (Math.random() - 0.5) * 1;
+                this.vy = (Math.random() - 0.5) * 1;
+                this.size = Math.random() * 2 + 1;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                // Bounce off edges
+                if (this.x < 0 || this.x > width) this.vx *= -1;
+                if (this.y < 0 || this.y > height) this.vy *= -1;
+
+                // Mouse interaction (Deep Learning bias simulation)
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx*dx + dy*dy);
+
+                if (distance < mouseDistance) {
+                    const forceDirectionX = dx / distance;
+                    const forceDirectionY = dy / distance;
+                    const force = (mouseDistance - distance) / mouseDistance;
+                    const directionX = forceDirectionX * force * 0.6;
+                    const directionY = forceDirectionY * force * 0.6;
+                    this.x -= directionX;
+                    this.y -= directionY;
+                }
+            }
+
+            draw() {
+                ctx.fillStyle = '#D71921'; // Nothing Red Dots
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, width, height);
+            
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+
+                // Draw connections (Neural Weights)
+                for (let j = i; j < particles.length; j++) {
+                    let dx = particles[i].x - particles[j].x;
+                    let dy = particles[i].y - particles[j].y;
+                    let distance = Math.sqrt(dx*dx + dy*dy);
+
+                    if (distance < connectionDistance) {
+                        ctx.beginPath();
+                        // Opacity based on distance
+                        let opacity = 1 - (distance / connectionDistance);
+                        ctx.strokeStyle = 'rgba(100, 100, 100,' + opacity + ')'; 
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+    </script>
+</body>
+</html>

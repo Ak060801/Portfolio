@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohammad Ayaan Khan</title>
     <style>
-        /* IMPORT FONTS */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap');
 
         :root {
@@ -13,7 +12,7 @@
             --card-bg: #1a1a1a;
             --text-main: #e0e0e0;
             --text-dim: #888888;
-            --accent: #D71921; /* Nothing OS Red */
+            --accent: #D71921;
             --grid-line: #333333;
             --font-main: 'Inter', sans-serif;
             --font-mono: 'Share Tech Mono', monospace;
@@ -23,7 +22,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            cursor: crosshair; /* Industrial feel */
+            cursor: crosshair;
         }
 
         body {
@@ -34,7 +33,6 @@
             line-height: 1.6;
         }
 
-        /* NEURAL NETWORK CANVAS */
         #canvas-container {
             position: fixed;
             top: 0;
@@ -45,7 +43,6 @@
             opacity: 0.4;
         }
 
-        /* LAYOUT UTILITIES */
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -57,7 +54,6 @@
             border-bottom: 1px dashed var(--grid-line);
         }
 
-        /* TYPOGRAPHY */
         h1, h2, h3, .mono {
             font-family: var(--font-mono);
             text-transform: uppercase;
@@ -78,11 +74,8 @@
             padding-bottom: 5px;
         }
 
-        .highlight {
-            color: var(--accent);
-        }
+        .highlight { color: var(--accent); }
 
-        /* HERO SECTION */
         .hero {
             height: 100vh;
             display: flex;
@@ -98,7 +91,6 @@
             max-width: 600px;
         }
 
-        /* BUTTONS (NOTHING OS STYLE) */
         .btn-group {
             display: flex;
             gap: 20px;
@@ -113,9 +105,7 @@
             text-decoration: none;
             font-size: 1rem;
             transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border-radius: 30px; /* Rounded corners like Nothing widgets */
+            border-radius: 30px;
         }
 
         .btn:hover {
@@ -135,7 +125,6 @@
             border-color: white;
         }
 
-        /* BENTO GRID LAYOUT FOR EXPERIENCE */
         .bento-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -172,21 +161,10 @@
             border-radius: 10px;
         }
 
-        .company {
-            font-weight: 600;
-            font-size: 1.2rem;
-        }
+        .company { font-weight: 600; font-size: 1.2rem; }
+        .role { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 10px; display: block; }
 
-        .role {
-            color: var(--text-dim);
-            font-size: 0.95rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        ul.achievements {
-            list-style-type: none;
-        }
+        ul.achievements { list-style-type: none; }
 
         ul.achievements li {
             position: relative;
@@ -203,7 +181,6 @@
             left: 0;
         }
 
-        /* SKILLS TAGS */
         .skills-container {
             display: flex;
             flex-wrap: wrap;
@@ -216,14 +193,8 @@
             border-radius: 50px;
             font-family: var(--font-mono);
             font-size: 0.9rem;
-            border: 1px solid transparent;
         }
 
-        .skill-tag:hover {
-            border-color: var(--accent);
-        }
-
-        /* FOOTER */
         footer {
             padding: 50px 0;
             text-align: center;
@@ -243,263 +214,170 @@
 </head>
 <body>
 
-    <canvas id="canvas-container"></canvas>
+<canvas id="canvas-container"></canvas>
 
-    <div class="container">
-        
-        <section class="hero">
-            <span class="mono highlight">System.Online...</span>
-            <h1>Mohammad <br> Ayaan Khan</h1>
-            <p>
-                MS CS Student at USC 
-            </p>
-            <div class="btn-group">
-                <a href="resume.pdf" class="btn btn-accent" download>Resume_</a>
-                <a href="https://linkedin.com/in/mohammad-ayaan-khan-17261a166" target="_blank" class="btn">LinkedIn Profile_</a>
-                <a href="mailto:mkhan736@usc.edu" class="btn">Contact Me_</a>
+<div class="container">
+
+    <!-- HERO -->
+    <section class="hero">
+        <span class="mono highlight">System.Online...</span>
+        <h1>Mohammad <br> Ayaan Khan</h1>
+        <p>MS CS Student at USC</p>
+        <div class="btn-group">
+            <a href="resume.pdf" class="btn btn-accent" download>Resume_</a>
+            <a href="https://linkedin.com/in/mohammad-ayaan-khan-17261a166" target="_blank" class="btn">LinkedIn Profile_</a>
+            <a href="mailto:mkhan736@usc.edu" class="btn">Contact Me_</a>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <h2>Experience_</h2>
+        <div class="bento-grid">
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="company">Bharat Electronics Limited</span>
+                    <span class="date">Mar 2024 - Jul 2024</span>
+                </div>
+                <span class="role">Research Trainee (AI Dept)</span>
+                <ul class="achievements">
+                    <li>Developed a 90% accurate AI model to classify vessel-types by trajectory.</li>
+                    <li>Built scalable MongoDB infrastructure, achieving 20% faster queries.</li>
+                    <li>Automated data ingestion, cutting manual handling by 40%.</li>
+                </ul>
             </div>
-        </section>
 
-        <section id="education">
-            <h2> Education_</h2>
-            <div class="bento-grid">
-                <div class="card">
-                    <div class="card-header">
-                        <span class="company">University of Southern California</span>
-                        <span class="date">Aug 2025 - Present</span>
-                    </div>
-                    <span class="role">Master of Science, Computer Science</span>
-                    <ul class="achievements">
-                        <li>CGPA: 3.5/4.0</li>
-                    </ul>
-                    <p style="font-size: 0.9rem; color: #888;">Los Angeles, CA</p>
+            <div class="card">
+                <div class="card-header">
+                    <span class="company">IIIT</span>
+                    <span class="date">Jun 2023 - Jan 2024</span>
                 </div>
-                <div class="card">
-                    <div class="card-header">
-                        <span class="company">Manipal University Jaipur</span>
-                        <span class="date">2020 - 2024</span>
-                    </div>
-                    <span class="role">B.Tech Electronics & Communication</span>
-                    <ul class="achievements">
-                        <li>CGPA: 3.54/4.0</li>
-                        
-                    </ul>
-                </div>
+                <span class="role">Research Intern (CS Dept)</span>
+                <ul class="achievements">
+                    <li>Improved sentiment analysis achieving 87% accuracy (18% gain).</li>
+                    <li>Built 81% accurate OCR model for scanned archives.</li>
+                    <li>Engineered robust data pipelines reducing data-prep time by 50%.</li>
+                </ul>
             </div>
-        </section>
 
-        <section id="experience">
-            <h2>Experience_</h2>
-            <div class="bento-grid">
-                <div class="card">
-                    <div class="card-header">
-                        <span class="company">Bharat Electronics Limited</span>
-                        <span class="date">Mar 2024 - Jul 2024</span>
-                    </div>
-                    <span class="role">Research Trainee (AI Dept)</span>
-                    <ul class="achievements">
-                        <li>Developed a 90% accurate AI model to classify vessel-types by trajectory.</li>
-                        <li>Built scalable MongoDB infrastructure, achieving 20% faster queries.</li>
-                        <li>Automated data ingestion, cutting manual handling by 40%.</li>
-                    </ul>
+            <div class="card">
+                <div class="card-header">
+                    <span class="company">SmartInternz</span>
+                    <span class="date">May 2023 - Jul 2023</span>
                 </div>
-
-                <div class="card">
-                    <div class="card-header">
-                        <span class="company">IIIT</span>
-                        <span class="date">Jun 2023 - Jan 2024</span>
-                    </div>
-                    <span class="role">Research Intern (CS Dept)</span>
-                    <ul class="achievements">
-                        <li>Improved sentiment analysis achieving 87% accuracy (18% gain).</li>
-                        <li>Built 81% accurate OCR model for scanned archives.</li>
-                        <li>Engineered robust data pipelines reducing data-prep time by 50%.</li>
-                    </ul>
-                </div>
-
-                 <div class="card">
-                    <div class="card-header">
-                        <span class="company">SmartInternz</span>
-                        <span class="date">May 2023 - Jul 2023</span>
-                    </div>
-                    <span class="role">Salesforce Developer</span>
-                    <ul class="achievements">
-                        <li>Developed custom features using Apex and Lightning components.</li>
-                        <li>Optimized SOQL queries for faster data retrieval.</li>
-                    </ul>
-                </div>
+                <span class="role">Salesforce Developer</span>
+                <ul class="achievements">
+                    <li>Developed custom features using Apex and Lightning components.</li>
+                    <li>Optimized SOQL queries for faster data retrieval.</li>
+                </ul>
             </div>
-        </section>
 
-        <section id="projects">
-            <h2>Academic Projects_</h2>
-            <div class="bento-grid">
-                <div class="card">
-                    <div class="card-header">
-                        <span class="company">Tire Wear Prediction</span>
-                        <span class="mono" style="color:var(--accent)">[F1/Telemetry]</span>
-                    </div>
-                    <ul class="achievements">
-                        <li>Hybrid XGBoost-LSTM model with 88% prediction accuracy.</li>
-                        <li>Developed tire-degradation pipeline with 32% signal improvement.</li>
-                        <li>Generates real-time alerts up to 12 laps in advance.</li>
-                    </ul>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <h2>Skills_</h2>
+        <div class="skills-container">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">C++</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">Keras</span>
+            <span class="skill-tag">Scikit-learn</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">Google Cloud</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Git</span>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <h2>Academic Projects_</h2>
+        <div class="bento-grid">
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="company">Tire Wear Prediction</span>
+                    <span class="mono" style="color:var(--accent)">[F1/Telemetry]</span>
                 </div>
+                <ul class="achievements">
+                    <li>Hybrid XGBoost-LSTM model with 88% prediction accuracy.</li>
+                    <li>Developed tire-degradation pipeline with 32% signal improvement.</li>
+                    <li>Generates real-time alerts up to 12 laps in advance.</li>
+                </ul>
+            </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <span class="company">Driver Behavior Analysis</span>
-                        <span class="mono" style="color:var(--accent)">[IoT/ML]</span>
-                    </div>
-                    <ul class="achievements">
-                        <li>92% accuracy in detecting risky driving (harsh braking, aggressive turns).</li>
-                        <li>Processed gyroscope/accelerometer samples from smartphone sensors.</li>
-                    </ul>
+            <div class="card">
+                <div class="card-header">
+                    <span class="company">Driver Behavior Analysis</span>
+                    <span class="mono" style="color:var(--accent)">[IoT/ML]</span>
                 </div>
+                <ul class="achievements">
+                    <li>92% accuracy in detecting risky driving.</li>
+                    <li>Processed gyroscope/accelerometer samples from smartphone sensors.</li>
+                </ul>
+            </div>
 
-                <div class="card">
-                    <div class="card-header">
-                        <span class="company">Skin Disease Classification</span>
-                        <span class="mono" style="color:var(--accent)">[Computer Vision]</span>
-                    </div>
-                    <ul class="achievements">
-                        <li>91% accuracy with novel Fuzzy-CNN meta-learner.</li>
-                        <li>Improved ROI clarity by 35% using K-means segmentation.</li>
-                    </ul>
+            <div class="card">
+                <div class="card-header">
+                    <span class="company">Skin Disease Classification</span>
+                    <span class="mono" style="color:var(--accent)">[Computer Vision]</span>
                 </div>
+                <ul class="achievements">
+                    <li>91% accuracy with Fuzzy-CNN meta-learner.</li>
+                    <li>Improved ROI clarity by 35% using K-means segmentation.</li>
+                </ul>
             </div>
-        </section>
 
-        <section id="skills">
-            <h2>Skills_</h2>
-            <div class="skills-container">
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">C++</span>
-                <span class="skill-tag">Java</span>
-                <span class="skill-tag">TensorFlow</span>
-                <span class="skill-tag">PyTorch</span>
-                <span class="skill-tag">Keras</span>
-                <span class="skill-tag">Scikit-learn</span>
-                <span class="skill-tag">Pandas</span>
-                <span class="skill-tag">MongoDB</span>
-                <span class="skill-tag">SQL</span>
-                <span class="skill-tag">AWS</span>
-                <span class="skill-tag">Google Cloud</span>
-                <span class="skill-tag">Docker</span>
-                <span class="skill-tag">Git</span>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+        <h2>Education_</h2>
+        <div class="bento-grid">
+
+            <div class="card">
+                <div class="card-header">
+                    <span class="company">University of Southern California</span>
+                    <span class="date">Aug 2025 - Present</span>
+                </div>
+                <span class="role">Master of Science, Computer Science</span>
+                <ul class="achievements">
+                    <li>CGPA: 3.5/4.0</li>
+                </ul>
+                <p style="font-size: 0.9rem; color: #888;">Los Angeles, CA</p>
             </div>
-        </section>
 
-        <footer>
-            <div class="contact-info">
-                mkhan736@usc.edu | 213-870-9203 | Los Angeles, CA
+            <div class="card">
+                <div class="card-header">
+                    <span class="company">Manipal University Jaipur</span>
+                    <span class="date">2020 - 2024</span>
+                </div>
+                <span class="role">B.Tech Electronics & Communication</span>
+                <ul class="achievements">
+                    <li>CGPA: 3.54/4.0</li>
+                </ul>
             </div>
-                
-            
-        </footer>
-    </div>
 
-    <script>
-        const canvas = document.getElementById('canvas-container');
-        const ctx = canvas.getContext('2d');
-        
-        let width, height;
-        let particles = [];
-        
-        // Configuration
-        const particleCount = 60; // Number of nodes
-        const connectionDistance = 150; // Distance to draw lines
-        const mouseDistance = 200; // Interaction radius
+        </div>
+    </section>
 
-        let mouse = { x: null, y: null };
+    <!-- FOOTER -->
+    <footer>
+        <div class="contact-info">
+            mkhan736@usc.edu | 213-870-9203 | Los Angeles, CA
+        </div>
+    </footer>
 
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.x;
-            mouse.y = e.y;
-        });
+</div>
 
-        window.addEventListener('resize', init);
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * width;
-                this.y = Math.random() * height;
-                this.vx = (Math.random() - 0.5) * 1;
-                this.vy = (Math.random() - 0.5) * 1;
-                this.size = Math.random() * 2 + 1;
-            }
-
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-
-                // Bounce off edges
-                if (this.x < 0 || this.x > width) this.vx *= -1;
-                if (this.y < 0 || this.y > height) this.vy *= -1;
-
-                // Mouse interaction (Deep Learning bias simulation)
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx*dx + dy*dy);
-
-                if (distance < mouseDistance) {
-                    const forceDirectionX = dx / distance;
-                    const forceDirectionY = dy / distance;
-                    const force = (mouseDistance - distance) / mouseDistance;
-                    const directionX = forceDirectionX * force * 0.6;
-                    const directionY = forceDirectionY * force * 0.6;
-                    this.x -= directionX;
-                    this.y -= directionY;
-                }
-            }
-
-            draw() {
-                ctx.fillStyle = '#D71921'; // Nothing Red Dots
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function init() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-            particles = [];
-            for (let i = 0; i < particleCount; i++) {
-                particles.push(new Particle());
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-
-                // Draw connections (Neural Weights)
-                for (let j = i; j < particles.length; j++) {
-                    let dx = particles[i].x - particles[j].x;
-                    let dy = particles[i].y - particles[j].y;
-                    let distance = Math.sqrt(dx*dx + dy*dy);
-
-                    if (distance < connectionDistance) {
-                        ctx.beginPath();
-                        // Opacity based on distance
-                        let opacity = 1 - (distance / connectionDistance);
-                        ctx.strokeStyle = 'rgba(100, 100, 100,' + opacity + ')'; 
-                        ctx.lineWidth = 1;
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-
-        init();
-        animate();
-    </script>
 </body>
 </html>

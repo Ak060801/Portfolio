@@ -40,13 +40,16 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.4;
+            /* Opacity handled in JS for better control, but CSS backup here */
+            background: var(--bg-color);
         }
 
         .container {
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative; /* Ensure it sits above canvas */
+            z-index: 1;
         }
 
         section {
@@ -137,12 +140,12 @@
             padding: 25px;
             border-radius: 20px;
             backdrop-filter: blur(5px);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, border-color 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            border-color: var(--text-dim);
+            border-color: var(--accent);
         }
 
         .card-header {
@@ -193,6 +196,12 @@
             border-radius: 50px;
             font-family: var(--font-mono);
             font-size: 0.9rem;
+            border: 1px solid transparent;
+            transition: border-color 0.3s;
+        }
+        
+        .skill-tag:hover {
+            border-color: var(--accent);
         }
 
         footer {
@@ -218,7 +227,6 @@
 
 <div class="container">
 
-    <!-- HERO -->
     <section class="hero">
         <span class="mono highlight">System.Online...</span>
         <h1>Mohammad <br> Ayaan Khan</h1>
@@ -230,7 +238,6 @@
         </div>
     </section>
 
-    <!-- EXPERIENCE -->
     <section id="experience">
         <h2>Experience_</h2>
         <div class="bento-grid">
@@ -276,7 +283,6 @@
         </div>
     </section>
 
-    <!-- SKILLS -->
     <section id="skills">
         <h2>Skills_</h2>
         <div class="skills-container">
@@ -297,7 +303,6 @@
         </div>
     </section>
 
-    <!-- PROJECTS -->
     <section id="projects">
         <h2>Academic Projects_</h2>
         <div class="bento-grid">
@@ -339,7 +344,6 @@
         </div>
     </section>
 
-    <!-- EDUCATION -->
     <section id="education">
         <h2>Education_</h2>
         <div class="bento-grid">
@@ -370,7 +374,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
         <div class="contact-info">
             mkhan736@usc.edu | 213-870-9203 | Los Angeles, CA
@@ -379,5 +382,126 @@
 
 </div>
 
+<script>
+    const canvas = document.getElementById('canvas-container');
+    const ctx = canvas.getContext('2d');
+
+    // Set canvas to full screen
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    // Configuration
+    const particleCount = 100;
+    const connectionDistance = 150;
+    const mouseDistance = 200;
+
+    // Mouse tracking
+    let mouse = {
+        x: null,
+        y: null
+    }
+
+    window.addEventListener('mousemove', (event) => {
+        mouse.x = event.x;
+        mouse.y = event.y;
+    });
+
+    window.addEventListener('mouseout', () => {
+        mouse.x = null;
+        mouse.y = null;
+    });
+
+    // Particle Class
+    class Particle {
+        constructor() {
+            this.x = Math.random() * canvas.width;
+            this.y = Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 1.5; // Velocity X
+            this.vy = (Math.random() - 0.5) * 1.5; // Velocity Y
+            this.size = Math.random() * 2 + 1;
+            this.color = 'rgba(224, 224, 224, 0.5)'; // Matching text-main with opacity
+        }
+
+        update() {
+            this.x += this.vx;
+            this.y += this.vy;
+
+            // Bounce off edges
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+            // Mouse interaction (Repel/Attract or just visual)
+            // Here we just let them float, but connections happen in animate()
+        }
+
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = this.color;
+            ctx.fill();
+        }
+    }
+
+    // Create Particles
+    let particles = [];
+    function init() {
+        particles = [];
+        for (let i = 0; i < particleCount; i++) {
+            particles.push(new Particle());
+        }
+    }
+    init();
+
+    // Animation Loop
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Update and draw particles
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+
+            // Connect particles to each other (Neural Net effect)
+            for (let j = i; j < particles.length; j++) {
+                const dx = particles[i].x - particles[j].x;
+                const dy = particles[i].y - particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < connectionDistance) {
+                    ctx.beginPath();
+                    ctx.strokeStyle = `rgba(100, 100, 100, ${1 - distance / connectionDistance})`;
+                    ctx.lineWidth = 1;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+
+            // Connect particles to mouse
+            if (mouse.x != null) {
+                const dx = particles[i].x - mouse.x;
+                const dy = particles[i].y - mouse.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < mouseDistance) {
+                    ctx.beginPath();
+                    // Use the accent color for mouse connections
+                    ctx.strokeStyle = `rgba(215, 25, 33, ${1 - distance / mouseDistance})`; 
+                    ctx.lineWidth = 1.5;
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(mouse.x, mouse.y);
+                    ctx.stroke();
+                }
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+    animate();
+
+</script>
 </body>
 </html>

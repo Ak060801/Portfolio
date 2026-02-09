@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohammad Ayaan Khan</title>
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Share+Tech+Mono&display=swap');
 
@@ -40,7 +41,6 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            /* Opacity handled in JS for better control, but CSS backup here */
             background: var(--bg-color);
         }
 
@@ -48,7 +48,7 @@
             max-width: 1100px;
             margin: 0 auto;
             padding: 0 20px;
-            position: relative; /* Ensure it sits above canvas */
+            position: relative;
             z-index: 1;
         }
 
@@ -57,7 +57,10 @@
             border-bottom: 1px dashed var(--grid-line);
         }
 
-        h1, h2, h3, .mono {
+        h1,
+        h2,
+        h3,
+        .mono {
             font-family: var(--font-mono);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -77,7 +80,9 @@
             padding-bottom: 5px;
         }
 
-        .highlight { color: var(--accent); }
+        .highlight {
+            color: var(--accent);
+        }
 
         .hero {
             height: 100vh;
@@ -164,10 +169,21 @@
             border-radius: 10px;
         }
 
-        .company { font-weight: 600; font-size: 1.2rem; }
-        .role { color: var(--text-dim); font-size: 0.95rem; margin-bottom: 10px; display: block; }
+        .company {
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
 
-        ul.achievements { list-style-type: none; }
+        .role {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        ul.achievements {
+            list-style: none;
+        }
 
         ul.achievements li {
             position: relative;
@@ -199,7 +215,7 @@
             border: 1px solid transparent;
             transition: border-color 0.3s;
         }
-        
+
         .skill-tag:hover {
             border-color: var(--accent);
         }
@@ -216,292 +232,375 @@
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
-            .btn-group { flex-direction: column; }
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .btn-group {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
+
 <body>
 
-<canvas id="canvas-container"></canvas>
+    <canvas id="canvas-container"></canvas>
 
-<div class="container">
+    <div class="container">
 
-    <section class="hero">
-        <span class="mono highlight">System.Online...</span>
-        <h1>Mohammad <br> Ayaan Khan</h1>
-        <p>MS CS Student at USC</p>
-        <div class="btn-group">
-            <a href="Mohammad_Ayaan_Khan_Resume.pdf" class="btn btn-accent" download>Resume_</a>
-            <a href="https://linkedin.com/in/mohammad-ayaan-khan-17261a166" target="_blank" class="btn">LinkedIn Profile_</a>
-            <a href="mailto:mkhan736@usc.edu" class="btn">Contact Me_</a>
-        </div>
-    </section>
+        <!-- HERO -->
+        <section class="hero">
+            <span class="mono highlight">System.Online...</span>
+            <h1>Mohammad <br> Ayaan Khan</h1>
 
-    <section id="experience">
-        <h2>Experience_</h2>
-        <div class="bento-grid">
+            <p>MS CS Student at USC</p>
 
-            <div class="card">
-                <div class="card-header">
-                    <span class="company">Central Research Laboratory</span>
-                    <span class="date">Mar 2024 - Jul 2024</span>
-                </div>
-                <span class="role">Research Trainee (AI Dept)</span>
-                <ul class="achievements">
-                    <li>Developed a 90% accurate AI model to classify vessel-types by trajectory.</li>
-                    <li>Built scalable MongoDB infrastructure, achieving 20% faster queries.</li>
-                    <li>Automated data ingestion, cutting manual handling by 40%.</li>
-                </ul>
+            <div class="btn-group">
+                <a href="Mohammad_Ayaan_Khan_Resume.pdf" class="btn btn-accent" download>
+                    Resume_
+                </a>
+
+                <a href="https://linkedin.com/in/mohammad-ayaan-khan-17261a166"
+                   target="_blank"
+                   class="btn">
+                    LinkedIn Profile_
+                </a>
+
+                <a href="mailto:mkhan736@usc.edu" class="btn">
+                    Contact Me_
+                </a>
             </div>
+        </section>
 
-            <div class="card">
-                <div class="card-header">
-                    <span class="company">IIIT Nagpur</span>
-                    <span class="date">Jun 2023 - Jan 2024</span>
+
+        <!-- EXPERIENCE -->
+        <section id="experience">
+            <h2>Experience_</h2>
+
+            <div class="bento-grid">
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="company">Central Research Laboratory</span>
+                        <span class="date">Mar 2024 - Jul 2024</span>
+                    </div>
+
+                    <span class="role">Research Trainee (AI Dept)</span>
+
+                    <ul class="achievements">
+                        <li>Developed a 90% accurate AI model to classify vessel-types.</li>
+                        <li>Built scalable MongoDB infrastructure.</li>
+                        <li>Automated data ingestion.</li>
+                    </ul>
                 </div>
-                <span class="role">Research Intern (CS Dept)</span>
-                <ul class="achievements">
-                    <li>Improved sentiment analysis achieving 87% accuracy (18% gain).</li>
-                    <li>Built 81% accurate OCR model for scanned archives.</li>
-                    <li>Engineered robust data pipelines reducing data-prep time by 50%.</li>
-                </ul>
-            </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <span class="company">SmartInternz</span>
-                    <span class="date">May 2023 - Jul 2023</span>
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="company">IIIT Nagpur</span>
+                        <span class="date">Jun 2023 - Jan 2024</span>
+                    </div>
+
+                    <span class="role">Research Intern (CS Dept)</span>
+
+                    <ul class="achievements">
+                        <li>Improved sentiment analysis to 87% accuracy.</li>
+                        <li>Built OCR model for scanned archives.</li>
+                        <li>Engineered data pipelines.</li>
+                    </ul>
                 </div>
-                <span class="role">Salesforce Developer</span>
-                <ul class="achievements">
-                    <li>Developed custom features using Apex and Lightning components.</li>
-                    <li>Optimized SOQL queries for faster data retrieval.</li>
-                </ul>
-            </div>
 
-        </div>
-    </section>
 
-    <section id="skills">
-        <h2>Skills_</h2>
-        <div class="skills-container">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">C++</span>
-            <span class="skill-tag">Java</span>
-            <span class="skill-tag">TensorFlow</span>
-            <span class="skill-tag">PyTorch</span>
-            <span class="skill-tag">Keras</span>
-            <span class="skill-tag">Scikit-learn</span>
-            <span class="skill-tag">Pandas</span>
-            <span class="skill-tag">MongoDB</span>
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">AWS</span>
-            <span class="skill-tag">Google Cloud</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Git</span>
-        </div>
-    </section>
+                <div class="card">
+                    <div class="card-header">
+                        <span class="company">SmartInternz</span>
+                        <span class="date">May 2023 - Jul 2023</span>
+                    </div>
 
-    <section id="projects">
-        <h2>Academic Projects_</h2>
-        <div class="bento-grid">
+                    <span class="role">Salesforce Developer</span>
 
-            <div class="card">
-                <div class="card-header">
-                    <span class="company">Tire Wear Prediction</span>
-                    <span class="mono" style="color:var(--accent)">[F1/Telemetry]</span>
+                    <ul class="achievements">
+                        <li>Developed custom Apex components.</li>
+                        <li>Optimized SOQL queries.</li>
+                    </ul>
                 </div>
-                <ul class="achievements">
-                    <li>Hybrid XGBoost-LSTM model with 88% prediction accuracy.</li>
-                    <li>Developed tire-degradation pipeline with 32% signal improvement.</li>
-                    <li>Generates real-time alerts up to 12 laps in advance.</li>
-                </ul>
-            </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <span class="company">Driver Behavior Analysis</span>
-                    <span class="mono" style="color:var(--accent)">[IoT/ML]</span>
+            </div>
+        </section>
+
+
+        <!-- SKILLS -->
+        <section id="skills">
+            <h2>Skills_</h2>
+
+            <div class="skills-container">
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">C++</span>
+                <span class="skill-tag">Java</span>
+                <span class="skill-tag">TensorFlow</span>
+                <span class="skill-tag">PyTorch</span>
+                <span class="skill-tag">Keras</span>
+                <span class="skill-tag">Scikit-learn</span>
+                <span class="skill-tag">Pandas</span>
+                <span class="skill-tag">MongoDB</span>
+                <span class="skill-tag">SQL</span>
+                <span class="skill-tag">AWS</span>
+                <span class="skill-tag">Google Cloud</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Git</span>
+            </div>
+        </section>
+
+
+        <!-- PROJECTS -->
+        <section id="projects">
+            <h2>Academic Projects_</h2>
+
+            <div class="bento-grid">
+
+                <!-- Tire Wear -->
+                <div class="card">
+                    <div class="card-header">
+
+                        <a href="https://github.com/Ak060801/tire-wear-prediction"
+                           target="_blank"
+                           class="company"
+                           style="color:inherit; text-decoration:none;">
+                            Tire Wear Prediction
+                        </a>
+
+                        <span class="mono" style="color:var(--accent)">
+                            [F1/Telemetry]
+                        </span>
+                    </div>
+
+                    <ul class="achievements">
+                        <li>Hybrid XGBoost-LSTM with 88% accuracy.</li>
+                        <li>32% signal improvement.</li>
+                        <li>12-lap advance alerts.</li>
+                    </ul>
+
+                    <div style="margin-top:15px;">
+                        <a href="https://github.com/Ak060801/tire-wear-prediction"
+                           target="_blank"
+                           class="btn"
+                           style="font-size:0.8rem; padding:8px 18px;">
+                            View on GitHub →
+                        </a>
+                    </div>
                 </div>
-                <ul class="achievements">
-                    <li>92% accuracy in detecting risky driving.</li>
-                    <li>Processed gyroscope/accelerometer samples from smartphone sensors.</li>
-                </ul>
-            </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <span class="company">Skin Disease Classification</span>
-                    <span class="mono" style="color:var(--accent)">[Computer Vision]</span>
+
+                <!-- Driver Behavior -->
+                <div class="card">
+                    <div class="card-header">
+                        <span class="company">Driver Behavior Analysis</span>
+                        <span class="mono" style="color:var(--accent)">[IoT/ML]</span>
+                    </div>
+
+                    <ul class="achievements">
+                        <li>92% risky driving detection.</li>
+                        <li>Smartphone sensor processing.</li>
+                    </ul>
                 </div>
-                <ul class="achievements">
-                    <li>91% accuracy with Fuzzy-CNN meta-learner.</li>
-                    <li>Improved ROI clarity by 35% using K-means segmentation.</li>
-                </ul>
-            </div>
 
-        </div>
-    </section>
 
-    <section id="education">
-        <h2>Education_</h2>
-        <div class="bento-grid">
+                <!-- Skin Disease -->
+                <div class="card">
+                    <div class="card-header">
 
-            <div class="card">
-                <div class="card-header">
-                    <span class="company">University of Southern California</span>
-                    <span class="date">Aug 2025 - Present</span>
+                        <a href="https://github.com/Ak060801/Skin-Disease-Classification"
+                           target="_blank"
+                           class="company"
+                           style="color:inherit; text-decoration:none;">
+                            Skin Disease Classification
+                        </a>
+
+                        <span class="mono" style="color:var(--accent)">
+                            [Computer Vision]
+                        </span>
+                    </div>
+
+                    <ul class="achievements">
+                        <li>91% CNN accuracy.</li>
+                        <li>35% ROI improvement.</li>
+                    </ul>
+
+                    <div style="margin-top:15px;">
+                        <a href="https://github.com/Ak060801/Skin-Disease-Classification"
+                           target="_blank"
+                           class="btn"
+                           style="font-size:0.8rem; padding:8px 18px;">
+                            View on GitHub →
+                        </a>
+                    </div>
                 </div>
-                <span class="role">Master of Science, Computer Science</span>
-                <ul class="achievements">
-                    <li>CGPA: 3.5/4.0</li>
-                </ul>
-                <p style="font-size: 0.9rem; color: #888;">Los Angeles, CA</p>
-            </div>
 
-            <div class="card">
-                <div class="card-header">
-                    <span class="company">Manipal University Jaipur</span>
-                    <span class="date">2020 - 2024</span>
+            </div>
+        </section>
+
+
+        <!-- EDUCATION -->
+        <section id="education">
+            <h2>Education_</h2>
+
+            <div class="bento-grid">
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="company">University of Southern California</span>
+                        <span class="date">Aug 2025 - Present</span>
+                    </div>
+
+                    <span class="role">MS Computer Science</span>
+
+                    <ul class="achievements">
+                        <li>CGPA: 3.5/4.0</li>
+                    </ul>
+
+                    <p style="font-size:0.9rem; color:#888;">
+                        Los Angeles, CA
+                    </p>
                 </div>
-                <span class="role">B.Tech Electronics & Communication</span>
-                <ul class="achievements">
-                    <li>CGPA: 3.54/4.0</li>
-                </ul>
+
+
+                <div class="card">
+                    <div class="card-header">
+                        <span class="company">Manipal University Jaipur</span>
+                        <span class="date">2020 - 2024</span>
+                    </div>
+
+                    <span class="role">B.Tech ECE</span>
+
+                    <ul class="achievements">
+                        <li>CGPA: 3.54/4.0</li>
+                    </ul>
+                </div>
+
             </div>
+        </section>
 
-        </div>
-    </section>
 
-    <footer>
-        <div class="contact-info">
-            mkhan736@usc.edu | 213-870-9203 | Los Angeles, CA
-        </div>
-    </footer>
+        <!-- FOOTER -->
+        <footer>
+            <div class="contact-info">
+                mkhan736@usc.edu | 213-870-9203 | Los Angeles, CA
+            </div>
+        </footer>
 
-</div>
+    </div>
 
-<script>
-    const canvas = document.getElementById('canvas-container');
-    const ctx = canvas.getContext('2d');
 
-    // Set canvas to full screen
-    function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    <!-- PARTICLE BACKGROUND SCRIPT -->
+    <script>
+        const canvas = document.getElementById("canvas-container");
+        const ctx = canvas.getContext("2d");
 
-    // Configuration
-    const particleCount = 100;
-    const connectionDistance = 150;
-    const mouseDistance = 200;
-
-    // Mouse tracking
-    let mouse = {
-        x: null,
-        y: null
-    }
-
-    window.addEventListener('mousemove', (event) => {
-        mouse.x = event.x;
-        mouse.y = event.y;
-    });
-
-    window.addEventListener('mouseout', () => {
-        mouse.x = null;
-        mouse.y = null;
-    });
-
-    // Particle Class
-    class Particle {
-        constructor() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.vx = (Math.random() - 0.5) * 1.5; // Velocity X
-            this.vy = (Math.random() - 0.5) * 1.5; // Velocity Y
-            this.size = Math.random() * 2 + 1;
-            this.color = 'rgba(224, 224, 224, 0.5)'; // Matching text-main with opacity
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
 
-        update() {
-            this.x += this.vx;
-            this.y += this.vy;
+        resizeCanvas();
+        window.addEventListener("resize", resizeCanvas);
 
-            // Bounce off edges
-            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        const particleCount = 100;
+        const connectionDistance = 150;
+        const mouseDistance = 200;
 
-            // Mouse interaction (Repel/Attract or just visual)
-            // Here we just let them float, but connections happen in animate()
+        let mouse = { x: null, y: null };
+
+        window.addEventListener("mousemove", e => {
+            mouse.x = e.x;
+            mouse.y = e.y;
+        });
+
+        window.addEventListener("mouseout", () => {
+            mouse.x = null;
+            mouse.y = null;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.vx = (Math.random() - 0.5) * 1.5;
+                this.vy = (Math.random() - 0.5) * 1.5;
+                this.size = Math.random() * 2 + 1;
+                this.color = "rgba(224,224,224,0.5)";
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+            }
+
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
         }
 
-        draw() {
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = this.color;
-            ctx.fill();
+        let particles = [];
+
+        function init() {
+            particles = [];
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
         }
-    }
 
-    // Create Particles
-    let particles = [];
-    function init() {
-        particles = [];
-        for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-        }
-    }
-    init();
+        init();
 
-    // Animation Loop
-    function animate() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        
-        // Update and draw particles
-        for (let i = 0; i < particles.length; i++) {
-            particles[i].update();
-            particles[i].draw();
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Connect particles to each other (Neural Net effect)
-            for (let j = i; j < particles.length; j++) {
-                const dx = particles[i].x - particles[j].x;
-                const dy = particles[i].y - particles[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
 
-                if (distance < connectionDistance) {
-                    ctx.beginPath();
-                    ctx.strokeStyle = `rgba(100, 100, 100, ${1 - distance / connectionDistance})`;
-                    ctx.lineWidth = 1;
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(particles[j].x, particles[j].y);
-                    ctx.stroke();
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < connectionDistance) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(100,100,100,${1 - dist / connectionDistance})`;
+                        ctx.lineWidth = 1;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+
+                if (mouse.x !== null) {
+                    const dx = particles[i].x - mouse.x;
+                    const dy = particles[i].y - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < mouseDistance) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(215,25,33,${1 - dist / mouseDistance})`;
+                        ctx.lineWidth = 1.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(mouse.x, mouse.y);
+                        ctx.stroke();
+                    }
                 }
             }
 
-            // Connect particles to mouse
-            if (mouse.x != null) {
-                const dx = particles[i].x - mouse.x;
-                const dy = particles[i].y - mouse.y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-
-                if (distance < mouseDistance) {
-                    ctx.beginPath();
-                    // Use the accent color for mouse connections
-                    ctx.strokeStyle = `rgba(215, 25, 33, ${1 - distance / mouseDistance})`; 
-                    ctx.lineWidth = 1.5;
-                    ctx.moveTo(particles[i].x, particles[i].y);
-                    ctx.lineTo(mouse.x, mouse.y);
-                    ctx.stroke();
-                }
-            }
+            requestAnimationFrame(animate);
         }
-        requestAnimationFrame(animate);
-    }
-    animate();
 
-</script>
+        animate();
+    </script>
+
 </body>
 </html>
